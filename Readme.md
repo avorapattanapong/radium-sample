@@ -16,6 +16,7 @@ Database is an in-memory H2 database. The frontend is built using ReactJS.
 2. UserService is built with dependency injection in mind. This allows the API to easily switch to a different implementation, such as serverless functions like Firebase or AWS Lambda.
 3. Database driver is setup to reduce boilerplate code using Hibernate.
 4. Lombok is also configured in order to reduce boilerplate code.
+5. Update user modal is not quite complete, the original value doesn't show up in the input fields and both values must be filled in for update to work.
 
 ## Assumptions
 1. Name is not unique.
@@ -37,3 +38,7 @@ Database is an in-memory H2 database. The frontend is built using ReactJS.
 6. Performance may not be up to par
 7. React app is created in Nextjs, which I do not have much experience with. With more time, I could optimize the setup and improve the performance, utilizing Nextjs.
 8. UI can be cleaned up a little more.
+9. Error handling on the UI is missing.
+10. The UI doesn't have a way to test retrieving a user by id. Accessible through `GET http://localhost:8081/users/{id}`
+11. Linting should be configured to help maintain code formatting
+12. Add user modal should use a date picker for birthdate field.

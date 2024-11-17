@@ -12,11 +12,11 @@ export const fetchUsers = () => {
   return axios.get(baseUrl);
 }
 
-export const getUser = (id) => {
+export const fetchUser = (id) => {
   return axios.get(`${baseUrl}/${id}`);
 }
 
-export const updateUser = ({ id, name, dateOfBirth }) => {
+export const updateSaveUser = ({ id, name, dateOfBirth }) => {
   return axios.put(baseUrl, {
     id,
     name,
@@ -24,6 +24,6 @@ export const updateUser = ({ id, name, dateOfBirth }) => {
   });
 }
 
-export const deleteUser = (id) => {
+export const deleteUserById = (id) => {
   return axios.delete(`${baseUrl}/${id}`);
 }

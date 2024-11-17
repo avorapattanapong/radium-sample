@@ -1,18 +1,18 @@
 "use client";
 
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {doGetUsers, getUsersSuccess} from "@/redux/actions/users";
-import {useDispatch, useSelector} from "react-redux";
-import {getUsers} from "@/redux/reducer/users";
-import {fetchUsers} from "@/redux/api/users";
+import {useSelector} from "react-redux";
 import {useAppDispatch} from "@/redux/hooks";
-import {Flex, Layout, Space, Table} from "antd";
-import Sider from "antd/es/layout/Sider";
-import {Content, Header} from "antd/es/layout/layout";
-import {Footer} from "antd/es/modal/shared";
+import {Space, Table} from "antd";
+import {selectUser} from "@/redux/reducer/ui";
+import DeleteConfirmationModal from "@/app/components/deleteConfirmationModal";
+import UpdateUserModal from "@/app/components/updateUserModal";
 
 export const UsersList = () => {
   const dispatch = useAppDispatch();
+  const [isDeleteConfirmationModalOpen, setIsDeleteConfirmationModalOpen] = useState(false);
+  const [isUpdateUserModalOpen, setIsUpdateUserModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(doGetUsers());
@@ -47,16 +47,27 @@ export const UsersList = () => {
     {
       title: 'Action',
       key: 'action',
-      render: (_) => (
+      render: (_, user) => (
           <Space size="middle">
-            <a onClick={() => {}}>Edit</a>
-            <a onClick={() => {}}>Delete</a>
+            <a onClick={() => {
+              dispatch(selectUser(user));
+              setIsUpdateUserModalOpen(true);
+            }}>Edit</a>
+            <a onClick={() => {
+              dispatch(selectUser(user));
+              setIsDeleteConfirmationModalOpen(true);
+            }}>Delete</a>
           </Space>
       ),
     },
   ];
 
   return (
-      <Table columns={columns} loading={usersLoading} dataSource={users} />
+      <>
+        <UpdateUserModal isModalOpen={isUpdateUserModalOpen} setIsModalOpen={setIsUpdateUserModalOpen} />
+        <DeleteConfirmationModal isModalOpen={isDeleteConfirmationModalOpen} setIsModalOpen={setIsDeleteConfirmationModalOpen} />
+        <Table columns={columns} loading={usersLoading} dataSource={users} />
+      </>
+
   );
 }
