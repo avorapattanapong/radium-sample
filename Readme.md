@@ -23,8 +23,17 @@ Database is an in-memory H2 database. The frontend is built using ReactJS.
 3. No authorization is required to access the API.
 
 ## How to run the project
+1. Clone the repository
+2. In the root directory, run `docker-compose up --build -d` to build and run the docker container
+3. Go to `http://localhost:3000` to access the frontend
+4. Note that due to some performance issues, the page might need to be refreshed a few times to load ui-library
 
 ## Things To Improve
 1. There are multiple places that can be factored out to reduce code duplication
 2. Exceptions can be factored out to a more generic type instead of Users related exceptions
 3. Handle unique constraints in the database, current setup does not have any unique fields other than id
+4. Add unit tests to both frontend and backend
+5. React app dockerfile is not production-ready, it is currently setup to run in dev environment
+6. Performance may not be up to par
+7. React app is created in Nextjs, which I do not have much experience with. With more time, I could optimize the setup and improve the performance, utilizing Nextjs.
+8. UI can be cleaned up a little more.

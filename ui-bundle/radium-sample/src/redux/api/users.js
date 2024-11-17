@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "http://localhost:8080/users";
+const baseUrl = "http://localhost:8081/users";
 export const saveUser = ({ name, dateOfBirth}) => {
   return axios.post(baseUrl, {
     name,
